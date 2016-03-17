@@ -3,28 +3,60 @@
  */
 angular.module('starter.controller.picture', [])
 
-  .controller('PictureCtrl', function($scope, $state, $rootScope, $firebaseAuth) {
+  .controller('PictureCtrl', function($scope, $state, $rootScope, $cordovaEmailComposer) {
+      $scope.takePicture = function () {
+        try{
+          navigator.camera.getPicture(onSuccess, onFail, { quality: 25,
+            destinationType: Camera.DestinationType.DATA_URL
+          });
 
-    $scope.takePicture = function(){
-      var options = {
-        quality: 50,
-        destinationType: Camera.DestinationType.DATA_URL,
-        sourceType: Camera.PictureSourceType.CAMERA,
-        allowEdit: true,
-        encodingType: Camera.EncodingType.JPEG,
-        targetWidth: 100,
-        targetHeight: 100,
-        popoverOptions: CameraPopoverOptions,
-        saveToPhotoAlbum: false,
-        correctOrientation:true
-      };
+          function onSuccess(imageData) {
+            var image = document.getElementById('myImage');
+            image.src = "data:image/jpeg;base64," + imageData;
+          }
 
-      $cordovaCamera.getPicture(options).then(function(imageData) {
-        var image = document.getElementById('myImage');
-        image.src = "data:image/jpeg;base64," + imageData;
-      }, function(err) {
-        // error
-      });
+          function onFail(message) {
+            alert('Failed because: ' + message);
+          }
+        }catch(e){
+          console.log(e);
+          console.log(e.stack);
+          console.log(e.line);
+        }
+
+      }
+
+    $scope.email = function(){
+      try{
+        $cordovaEmailComposer.isAvailable().then(function() {
+          alert('yes')
+        }, function () {
+          alert('no')
+        });
+
+        var email = {
+          to: 'baumgs86@uwosh.edu',
+          cc: 'sean.baumgartner14@gmail.com',
+          bcc: [],
+          //attachments: [
+          //  'file://img/logo.png',
+          //  'res://icon.png',
+          //  'base64:icon.png//iVBORw0KGgoAAAANSUhEUg...',
+          //  'file://README.pdf'
+          //],
+          subject: 'Receipt',
+          body: 'Here is the receipt!',
+          isHtml: true
+        };
+
+        $cordovaEmailComposer.open(email).then(null, function () {
+          // user cancelled email
+        });
+      }catch(e){
+        console.log(e);
+        console.log(e.stack);
+        console.log(e.line);
+      }
+
     }
-
   });

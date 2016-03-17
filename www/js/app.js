@@ -1,4 +1,4 @@
-angular.module('starter', ['ionic', 'starter.controllers', 'firebase'])
+angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 'firebase', 'ngCordova'])
 
   .run(function($ionicPlatform, $rootScope) {
 
@@ -8,6 +8,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase'])
         StatusBar.styleDefault();
       }
     });
+
+    $ionicPlatform.ready(function() {
+      try{
+        console.log(navigator.camera);
+      }catch(e){
+        console.log(e);
+        console.log(e.stack);
+        console.log(e.line);
+      }
+
+    })
 
 
   })

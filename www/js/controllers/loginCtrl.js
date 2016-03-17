@@ -5,8 +5,8 @@ angular.module('starter.controller.login', [])
 
   .controller('LoginCtrl', function($scope, $state, $rootScope, $firebaseAuth) {
     $scope.user = {
-      email: 'sean.baumgartner14@gmail.com',
-      password: ''
+      email: 'test2@test.com',
+      password: 'test'
     };
 
   $scope.login = function(){
