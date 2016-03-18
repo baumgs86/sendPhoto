@@ -1,4 +1,4 @@
-angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 'firebase', 'ngCordova'])
+angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 'firebase', 'ngCordova', 'ion-floating-menu', 'ionic-toast'])
 
   .run(function($ionicPlatform, $rootScope) {
 
