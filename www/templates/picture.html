@@ -1,12 +1,14 @@
 <ion-view  >
-  <ion-content scroll="false" style="background-color: #46C6F3">
+  <ion-content scroll="false">
     <div class="row">
         <div class="col"></div>
-        <button ng-click="logOut()" class="button button-icon icon ion-log-out" style="color: #FFC742" >&nbsp Log Out</button>
-    </div> 
-    <div class="col-offset-10 col-center" style="margin-top: 20%; margin-bottom: 15%;">
-      <img width="80%" src="./img/logo-placeholder.png">
+        <button ng-click="logOut()" class="button button-icon icon ion-log-out" style="color: #EBAA18" >&nbsp Log Out</button>
     </div>
-    <ion-floating-button click="takePicture()" has-footer="true" button-color="#FFC742" icon="ion-camera" iconColor="#fff"></ion-floating-button>
+    <div class="col-offset-10 col-center" style="margin-top: 20%; margin-bottom: 15%;">
+      <img width="80%" src="./img/Bethesda300.jpg">
+    </div>
+    <ion-floating-button ng-click="takePicture()" has-footer="true" button-color="#EBAA18" icon="ion-camera" iconColor="#fff">
+
+    </ion-floating-button>
   </ion-content>
 </ion-view>
