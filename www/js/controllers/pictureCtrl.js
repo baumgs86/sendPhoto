@@ -21,8 +21,8 @@ angular.module('starter.controller.picture', [])
             sourceType: Camera.PictureSourceType.CAMERA,
             allowEdit: true,
             encodingType: Camera.EncodingType.JPEG,
-            targetWidth: 100,
-            targetHeight: 100,
+            targetWidth: 500,
+            targetHeight: 500,
             popoverOptions: CameraPopoverOptions,
             saveToPhotoAlbum: false,
             correctOrientation:true
@@ -58,9 +58,7 @@ angular.module('starter.controller.picture', [])
           isHtml: true
         };
 
-        $cordovaEmailComposer.open(email).then(function(){
-           ionicToast.show('Reciept Sent Successfully', 'bottom', false, 2500);
-        }, function () {
+        $cordovaEmailComposer.open(email).then(null, function () {
           // user cancelled email
           ionicToast.show('Message Canceled', 'bottom', false, 2500);
         });
