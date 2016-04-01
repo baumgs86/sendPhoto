@@ -3,54 +3,66 @@
  */
 angular.module('starter.controller.picture', [])
 
-  .controller('PictureCtrl', function($scope, $state, $rootScope, $cordovaEmailComposer) {
+  .controller('PictureCtrl', function($scope, $state, $rootScope, $cordovaEmailComposer, $cordovaCamera, $ionicPlatform, ionicToast) {
+
+      $scope.hideToast = function(){
+          ionicToast.hide();
+      };
+
+      $scope.logOut = function(){
+          $state.go('login');
+      }
+
       $scope.takePicture = function () {
-        try{
-          navigator.camera.getPicture(onSuccess, onFail, { quality: 25,
-            destinationType: Camera.DestinationType.DATA_URL
-          });
 
-          function onSuccess(imageData) {
-            var image = document.getElementById('myImage');
-            image.src = "data:image/jpeg;base64," + imageData;
-          }
+        var options = {
+            quality: 50,
+            destinationType: Camera.DestinationType.DATA_URL,
+            sourceType: Camera.PictureSourceType.CAMERA,
+            allowEdit: true,
+            encodingType: Camera.EncodingType.JPEG,
+            targetWidth: 100,
+            targetHeight: 100,
+            popoverOptions: CameraPopoverOptions,
+            saveToPhotoAlbum: false,
+            correctOrientation:true
+        };
 
-          function onFail(message) {
-            alert('Failed because: ' + message);
-          }
-        }catch(e){
-          console.log(e);
-          console.log(e.stack);
-          console.log(e.line);
-        }
+        $cordovaCamera.getPicture(options).then(function(imageData) {
+            var image = "data:image/jpeg;base64," + imageData;
+            $scope.email(imageData);
+        }, function(err) {
+            ionicToast.show('There was an error accessing your camera, please try again later.', 'bottom', false, 2500);
+        });
 
       }
 
-    $scope.email = function(){
+
+    $scope.email = function(image){
       try{
         $cordovaEmailComposer.isAvailable().then(function() {
-          alert('yes')
+
         }, function () {
-          alert('no')
+           ionicToast.show('Email Composer Unavailable, Please try again later.', 'bottom', false, 2500);
         });
 
         var email = {
           to: 'baumgs86@uwosh.edu',
           cc: 'sean.baumgartner14@gmail.com',
           bcc: [],
-          //attachments: [
-          //  'file://img/logo.png',
-          //  'res://icon.png',
-          //  'base64:icon.png//iVBORw0KGgoAAAANSUhEUg...',
-          //  'file://README.pdf'
-          //],
+          attachments: [
+              'base64:recept.png//' + image
+          ],
           subject: 'Receipt',
-          body: 'Here is the receipt!',
+          body: 'Here is the receipt',
           isHtml: true
         };
 
-        $cordovaEmailComposer.open(email).then(null, function () {
+        $cordovaEmailComposer.open(email).then(function(){
+           ionicToast.show('Reciept Sent Successfully', 'bottom', false, 2500);
+        }, function () {
           // user cancelled email
+          ionicToast.show('Message Canceled', 'bottom', false, 2500);
         });
       }catch(e){
         console.log(e);

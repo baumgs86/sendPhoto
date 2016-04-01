@@ -1,21 +1,21 @@
 <ion-view hide-nav-bar="true">
   <ion-content>
     <div class="col-offset-10 col-center" style="margin-top: 20%; margin-bottom: 15%;">
-      <img width="90%" src="./img/logo.png">
+      <img width="90%" src="./img/Bethesda300.jpg">
     </div>
-    <div class="list">
-      <label class="item item-input">
+    <div class="list padding" >
+      <label class="item item-input" style="margin-bottom: 8px; border-radius:5px;">
         <span class="input-label">Username</span>
         <input type="text" ng-model="user.email">
       </label>
-      <label class="item item-input">
+      <label class="item item-input"  style="border-radius: 5px">
         <span class="input-label">Password</span>
         <input type="password" ng-model="user.password">
       </label>
-      <label class="item">
-        <button class="button button-block" ng-click="login()">Log in</button>
-      </label>
-      <!--<a class="button button-royal button-clear button-block" ng-click="forgotPassword()">Forgot Password</a>-->
+    </div>
+    <div class="padding">
+        <button class="button button-block" style="background-color: #EBAA18;" ng-click="login()">Log in</button>
+        <a class="button button-clear button-block" style="color: #EBAA18; font-size: 16px" ng-click="forgotPassword()">Forgot Password</a>
     </div>
   </ion-content>
 </ion-view>

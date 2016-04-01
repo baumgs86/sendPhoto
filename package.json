@@ -21,9 +21,14 @@
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
     "ionic-plugin-keyboard",
-    "ionic-plugin-deploy"
+    "ionic-plugin-deploy",
+    {
+      "locator": "https://github.com/katzer/cordova-plugin-email-composer.git",
+      "id": "cordova-plugin-email-composer"
+    }
   ],
   "cordovaPlatforms": [
-    "android"
+    "android",
+    "ios"
   ]
 }

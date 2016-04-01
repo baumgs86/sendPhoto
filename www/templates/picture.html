@@ -1,10 +1,14 @@
-<ion-view view-title="Picture App">
+<ion-view  >
   <ion-content scroll="false">
-    <div class="card">
-      <button ng-click="takePicture()">Take Picture</button>
+    <div class="row">
+        <div class="col"></div>
+        <button ng-click="logOut()" class="button button-icon icon ion-log-out" style="color: #EBAA18" >&nbsp Log Out</button>
     </div>
-    <div class="card">
-      <button ng-click="email()">Email</button>
+    <div class="col-offset-10 col-center" style="margin-top: 20%; margin-bottom: 15%;">
+      <img width="80%" src="./img/Bethesda300.jpg">
     </div>
+    <ion-floating-button ng-click="takePicture()" has-footer="true" button-color="#EBAA18" icon="ion-camera" iconColor="#fff">
+
+    </ion-floating-button>
   </ion-content>
 </ion-view>
