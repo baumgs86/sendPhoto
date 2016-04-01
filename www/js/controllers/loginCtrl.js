@@ -11,6 +11,8 @@ angular.module('starter.controller.login', [])
 
     $scope.login = function(){
         
+        //$state.go('picture')
+
         var ref = new Firebase("https://sendphoto.firebaseio.com");
         var auth = $firebaseAuth(ref);
 
@@ -30,5 +32,4 @@ angular.module('starter.controller.login', [])
         ionicToast.hide();
     };
       
-
   });
