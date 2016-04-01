@@ -27,7 +27,9 @@ angular.module('starter', ['ionic','ionic.service.core', 'starter.controllers', 
 
     $sceDelegateProvider.resourceUrlWhitelist([
       // Allow same origin resource loads.
-      'self'
+      'self',
+      
+      'https://sendphoto.firebaseio.com**'
     ]);
 
     $stateProvider
